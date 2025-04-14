@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require('dotenv')
 const app = express();
 const cors = require('cors')
+const api = require('./routes/StudentRoutes')
 
 app.use(cors())
 //middleware
@@ -26,3 +27,5 @@ mongoose.connect(queryString, {
     useUnifiedTopology: true
 }).then(() => console.log('MongoDB connected!'))
     .catch(err => console.log('MongoDB connection error:', err.message));
+
+app.use('/api', api)

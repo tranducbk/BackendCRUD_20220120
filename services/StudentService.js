@@ -20,3 +20,11 @@ exports.updateStudent = async (id, student) => {
 exports.deleteStudent = async (id) => {
     return await StudentModel.findByIdAndDelete(id);
 }
+
+exports.searchStudent = async (keyword) => {
+    const students = await StudentModel.find();
+    return students.filter(student => 
+        (student.name && student.name.toLowerCase().trim().includes(keyword.toLowerCase().trim())) || 
+        (student.address && student.address.toLowerCase().trim().includes(keyword.toLowerCase().trim()))
+    );
+}
